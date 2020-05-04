@@ -51,7 +51,7 @@ namespace CoreApp.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<WeatherForecast> GetWeatherForcast()
+        public IEnumerable<WeatherForecast> GetWeatherForcast2()
         {
             _logger.LogInformation("Log From Service", new object[] { new object() });
 
@@ -63,6 +63,30 @@ namespace CoreApp.Services
             var appName = _applicationConfig.Name;
             var ver = _applicationConfig.Version;
             var author = _applicationConfig.AppAuthor;
+
+            var summaries = _weatherDao.GetSummaries();
+
+            var rng = new Random();
+            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            {
+                Date = DateTime.Now.AddDays(index),
+                TemperatureC = rng.Next(-20, 55),
+                Summary = summaries[rng.Next(summaries.Count)]
+            });
+        }
+
+        public IEnumerable<WeatherForecast> GetWeatherForcast()
+        {
+            _logger.LogInformation("Log From Service", new object[] { new object() });
+
+            // throw new ArgumentException(
+            //$"We don't offer a weather forecast for");//xsssss
+            //var switchs = _config.GetSection("FeatureSwitches");
+            //var report = switchs.GetChildren().Select(x => $"{x.Key} : {x.Value}");
+
+            //var appName = _applicationConfig.Name;
+            //var ver = _applicationConfig.Version;
+            //var author = _applicationConfig.AppAuthor;
 
             var summaries = _weatherDao.GetSummaries();
             

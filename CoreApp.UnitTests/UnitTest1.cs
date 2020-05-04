@@ -33,9 +33,10 @@ namespace CoreApp.UnitTests
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         });
 
-            
+            Mock<ILogger<WeatherServiceImp>> _loggerService = new Mock<ILogger<WeatherServiceImp>>();
 
-            IWeatherService _weatherService = new WeatherServiceImp(null, _weatherDaoMoq.Object, _appConfigMoq.Object, _config.Object);
+            IWeatherService _weatherService = new WeatherServiceImp(_loggerService.Object, _weatherDaoMoq.Object, _appConfigMoq.Object, _config.Object);
+
             Mock<ILogger<WeatherForecastController>> _loggerMoq = new Mock<ILogger<WeatherForecastController>>();
 
 
