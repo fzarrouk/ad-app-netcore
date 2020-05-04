@@ -1,0 +1,17 @@
+version : '3.5'
+
+networks:
+	localdev:
+		name:localdev
+
+services:
+	main-api:
+		build: CoreApp
+		restart: always
+		ports:
+			- "7000:80"
+		networks:
+			- localdev
+
+
+			

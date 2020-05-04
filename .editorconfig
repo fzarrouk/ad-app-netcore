@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CA1062: Valider les arguments de méthodes publiques
+dotnet_diagnostic.CA1062.severity = none
